@@ -4,6 +4,8 @@ import { Huecos } from "./componentes/Huecos";
 import { Info } from "./componentes/Info";
 import { Input } from "./componentes/Input";
 import { LetrasUsadas } from "./componentes/LetrasUsadas";
+import { DatosPartidaContext } from "./contexts/DatosPartidaContext";
+import { ResultadoContext } from "./contexts/ResultadoContext";
 
 function App() {
   const urlApiPalabras = "http://localhost:3001/palabras";
@@ -61,15 +63,23 @@ function App() {
   }, [letrasAcertadas, palabra]);
   return (
     <>
-      <Ahorcado errores={errores} />
-      <Huecos palabra={palabra} letrasAcertadas={letrasAcertadas} />
-      <Input
-        compruebaLetra={compruebaLetra}
-        victoria={victoria}
-        derrota={derrota}
-      />
-      <LetrasUsadas letrasUsadas={letrasUsadas} />
-      <Info victoria={victoria} derrota={derrota} />
+      <ResultadoContext.Provider value={{ victoria, derrota }}>
+        <DatosPartidaContext.Provider
+          value={{
+            palabra,
+            letrasAcertadas,
+            letrasUsadas,
+            errores,
+            compruebaLetra,
+          }}
+        >
+          <Ahorcado />
+          <Huecos />
+          <Input />
+          <LetrasUsadas />
+          <Info />
+        </DatosPartidaContext.Provider>
+      </ResultadoContext.Provider>
     </>
   );
 }

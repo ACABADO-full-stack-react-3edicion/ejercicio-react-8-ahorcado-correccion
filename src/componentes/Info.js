@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ResultadoContext } from "../contexts/ResultadoContext";
 
-export const Info = (props) => {
-  const { victoria, derrota } = props;
+export const Info = () => {
+  const { victoria, derrota } = useContext(ResultadoContext);
   return (
     <>
       {victoria && <div className="mensaje ganar">¡Ganaste!</div>}

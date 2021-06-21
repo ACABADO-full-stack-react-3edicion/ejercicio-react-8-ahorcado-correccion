@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { DatosPartidaContext } from "../contexts/DatosPartidaContext";
+import { ResultadoContext } from "../contexts/ResultadoContext";
 
-export const Input = (props) => {
-  const { compruebaLetra, victoria, derrota } = props;
+export const Input = () => {
+  const { compruebaLetra } = useContext(DatosPartidaContext);
+  const { victoria, derrota } = useContext(ResultadoContext);
   const [letra, setLetra] = useState("");
   const teclear = (e) => {
     setLetra(e.target.value);

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { DatosPartidaContext } from "../contexts/DatosPartidaContext";
 
-export const Ahorcado = (props) => {
-  const { errores } = props;
+export const Ahorcado = () => {
+  const { errores } = useContext(DatosPartidaContext);
   return (
     <div className="ahorcado">
       <svg id="hangman" viewBox="0 0 96 96" width="300" height="300">
